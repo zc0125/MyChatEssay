@@ -27,13 +27,13 @@ class CClientConn(object):
 
     def send_msg(self, data):
         if self.m_conn is None:
-            print("Server> 未与客户端连接")
+            print("Server:未与客户端连接")
             self.del_client()
         self.m_conn.send(json.dumps(data).encode('utf-8'))
 
     def send_no_read_msg(self):
         if self.m_conn is None:
-            print("Server> 未与客户端连接")
+            print("Server:未与客户端连接")
             self.del_client()
         no_read_msgs = CClientManage.get_no_read_message(self.m_name)
         for _data in no_read_msgs:
@@ -42,7 +42,7 @@ class CClientConn(object):
     def recv_msg(self):
         flag = True
         if self.m_conn is None:
-            print("Server> 未与客户端连接")
+            print("Server:未与客户端连接")
             self.del_client()
         self.m_name = str(self.m_conn.recv(1024), encoding="utf-8")
         CClientManage.set_name_addr(self.m_address, self.m_name)
